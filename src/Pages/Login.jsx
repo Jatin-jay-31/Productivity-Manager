@@ -1,9 +1,9 @@
 import React from 'react'
-
+import { Loginform } from '../Components'
 function Login() {
   return (
-    <div>
-      
+    <div className='py-8'>
+      <Loginform/>
     </div>
   )
 }

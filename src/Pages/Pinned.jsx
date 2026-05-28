@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react'
-import {NotesList, SearchBar,NotesItem,EmptyState} from '../Components/index'
+import React,{useEffect} from 'react'
+import {SearchBar,NotesList,NotesItem,EmptyState} from '../Components/index'
 import dbservice from '../appwrite/database'
 import { useDispatch, useSelector } from 'react-redux'
 import { setNotes } from '../store/slices/noteSlice'
 
-function Archive() {
-    const dispatch=useDispatch()
+
+function Pinned() {
+  const dispatch=useDispatch()
     const userId= useSelector((state)=> state.auth.userData?.$id)
     const theme= useSelector((state)=> state.ui.theme)
     useEffect(() => {
-        if(userId) dbservice.getArchivedNotes(userId).then((data)=> dispatch(setNotes(data.rows)))
-      },[userId,dispatch])  
+        if(userId) dbservice.getPinnedNotes(userId).then((data)=> dispatch(setNotes(data.rows)))
+        },[userId,dispatch])  
     
   return (
     <>
@@ -19,11 +20,11 @@ function Archive() {
               <SearchBar />
             </div>
     <div className='flex items-center flex-col'>
-        <NotesList/>
-    </div>
+            <NotesList/>
+        </div>
     </div>
     </>
   )
 }
 
-export default Archive
+export default Pinned

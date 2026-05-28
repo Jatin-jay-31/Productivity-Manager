@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState= {
     theme : 'light',
-    sortBy : 'newest',
+    sortBy : 'Newest',
     searchTerm: "",
     currentView: 'all'
 }

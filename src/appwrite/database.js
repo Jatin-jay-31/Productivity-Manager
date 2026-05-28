@@ -12,10 +12,10 @@ class DbService{
         this.database= new TablesDB(this.client)
     }
 
-    async createNote({title,content,userId,status="active",tags=[],isPinned=false}){
+    async createNote({title,content,userId,status="active",isPinned=false,colorIndex = " "}){
         try {
             return await this.database.createRow(conf.databaseId,conf.tableId,ID.unique(),
-                {title,content,userId,status,tags,isPinned}
+                {title,content,userId,status,tags,isPinned,colorIndex}
             )
         } catch (error) {
             throw error
@@ -73,7 +73,7 @@ class DbService{
     
     async getPinnedNotes(userId){
         try {
-            return await this.database.listRows(conf.databaseId,conf.tableId,[Query.equal("isPinned",true), Query.equal("userId",userId),Query.equal("status","active")])
+            return await this.database.listRows(conf.databaseId,conf.tableId,[Query.equal("isPinned",[true]), Query.equal("userId",[userId]),Query.equal("status",["active"])])
         } catch (error) {
             throw error
         }

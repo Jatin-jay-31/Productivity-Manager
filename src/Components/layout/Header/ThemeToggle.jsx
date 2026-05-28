@@ -1,12 +1,23 @@
 import React from 'react'
-import useNotes from '../Context/NotesContext'
+import uiSlice from '../../../store/slices/uiSlice'
+import { setTheme } from '../../../store/slices/uiSlice'
+import { useSelector,useDispatch } from 'react-redux'
 
 function ThemeToggle() {
-    const{theme,toggleTheme}=useNotes()
+  const dispatch=useDispatch()
+  const theme= useSelector((state)=> state.ui.theme)
+  const themeToggle=(e)=>{
+    const themeStatus= e.currentTarget.checked
+    if(themeStatus){
+      dispatch(setTheme('dark'))
+    }else{
+      dispatch(setTheme('light'))
+    }
+  }
   return (
     <>
     <label htmlFor="input" className='cursor-pointer'>
-        <input type='checkbox' value={theme} checked={theme==='dark'} onChange={toggleTheme} className='sr-only' id='input'/>
+        <input type='checkbox' value={theme} checked={theme==='dark'} onChange={themeToggle} className='sr-only' id='input'/>
     <div className={`w-14 h-8 rounded-full ${theme==='light' ? "bg-slate-300" : "bg-blue-500"} flex  items-center justify-start transition-all duration-300`}>
         <div className={`w-6 h-6 rounded-full ${theme==='light' ? "bg-white" : "bg-slate-100"} m-1 transition-all duration-300 shadow-md ${theme==='light'? " translate-x-0":" translate-x-6" }`}></div>
     </div>

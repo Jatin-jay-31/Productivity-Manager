@@ -3,18 +3,17 @@ import { createRoot } from 'react-dom/client'
 import store from './store/store.js'
 import './index.css'
 import App from './App.jsx'
-import Archive from './Pages/Archive.jsx'
 import Home from './Pages/Home.jsx'
 import Login from './Pages/Login.jsx'
-import Notes from './Pages/Notes.jsx'
 import Signup from './Pages/Signup.jsx'
-import Trash from './Pages/Trash.jsx'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
-import Protected from './Components/AuthLayout.jsx'
-import NotesForm from './Components/NotesForm.jsx'
-import Settings from './Pages/Settings.jsx'
-
+import Protected from './Components/layout/AuthLayout.jsx'
+import NotesForm from './Components/notes/NotesForm.jsx'
+import EditNote from './Pages/EditNote.jsx'
+import Trash from './Pages/Trash.jsx'
+import Pinned from './Pages/Pinned.jsx'
+import Archive from './Pages/Archive.jsx'
 
 const router= createBrowserRouter([
   {
@@ -38,47 +37,30 @@ const router= createBrowserRouter([
         </Protected>)
       },
       {
-        path: "/archived-notes",
-        element: (<Protected authentication>
-          <Archive/>
-        </Protected>)
-      },
-      {
-        path: "/all-notes",
-        element: (<Protected authentication>
-          <Notes/>
-        </Protected>)
-      },
-      {
-        path: "/trash",
-        element: (<Protected authentication>
-          <Trash/>
-        </Protected>)
-      },
-      {
-        path: "/add-note",
-        element: (<Protected authentication>
-          <NotesForm/>
-        </Protected>)
-      },
-      {
-        path: "/edit-note/:id",
+        path: "/note/:id",
         element: (<Protected authentication>
           <EditNote/>
         </Protected>)
       },
       {
-        path: "/note/:id",
+        path: "/note/trash",
         element: (<Protected authentication>
-          <Note/>
+          <Trash/>
         </Protected>)
       },
       {
-        path: "/settings",
+        path: "/note/pinned",
         element: (<Protected authentication>
-          <Settings/>
+          <Pinned/>
         </Protected>)
       },
+      {
+        path: "/note/archive",
+        element: (<Protected authentication>
+          <Archive/>
+        </Protected>)
+      },
+
     ]
   }
 ])

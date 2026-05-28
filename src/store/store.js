@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authSlice from './slices/authSlice'
-import NoteSlice from './slices/NoteSlice'
+import noteSlice from './slices/noteSlice'
+import uiSlice from './slices/uiSlice'
 import { darkColors } from '../Constants/NoteColor'
 
 const store= configureStore({
