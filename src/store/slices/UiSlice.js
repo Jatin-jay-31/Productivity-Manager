@@ -4,7 +4,7 @@ const initialState= {
     theme : 'light',
     sortBy : 'Newest',
     searchTerm: "",
-    currentView: 'all'
+    currentView: 'all',
 }
 
 const uiSlice= createSlice({
@@ -25,5 +25,5 @@ const uiSlice= createSlice({
         }
     }
 })
-export const {setTheme,setSortBy,setSearchTerm,setCurrentView}= uiSlice.actions
+export const {setTheme,setSortBy,setSearchTerm,setCurrentView,setDirty}= uiSlice.actions
 export default uiSlice.reducer

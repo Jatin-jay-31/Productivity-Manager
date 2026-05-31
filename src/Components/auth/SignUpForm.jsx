@@ -5,6 +5,7 @@ import authService from '../../appwrite/auth'
 import { login as authLogin } from '../../store/slices/authSlice'
 import { Link, useNavigate,useLocation } from 'react-router-dom'
 import { Button, Logo, Input } from '../index'
+import toast from "react-hot-toast"
 
 function SignUpForm() {
     const navigate = useNavigate()
@@ -14,33 +15,60 @@ function SignUpForm() {
     const { register, handleSubmit } = useForm()
     const theme=useSelector((state)=> state.ui.theme)
 
-    const signup = async (data) => {
-        setError("")
-        try {
-            const session = await authService.createAccount(data)
-            if (session) {
-                await authService.login({
-                    email:data.email,
-                    password:data.password
-                })
-                const userdata = await authService.getCurrentUser()
-                if (userdata) dispatch(authLogin(data))
-                if(location.state?.fromCreateNote){
-                    navigate("/",{
-                        state:{
-                            openCreate:true
+const signup = async (data) => {
+
+    setError("")
+
+    try {
+
+        const session =
+            await authService.createAccount(data)
+
+        if (session) {
+
+            const userData =
+                await authService.getCurrentUser()
+
+            if (userData) {
+
+                const safeUser = {
+                    $id: userData.$id,
+                    name: userData.name,
+                    email: userData.email
+                }
+
+                dispatch(
+                    authLogin({
+                        userData: safeUser
+                    })
+                )
+
+                toast.success(
+                    "Account Created Successfully",
+                    { duration: 2000 }
+                )
+
+                if (location.state?.fromCreateNote) {
+
+                    navigate("/", {
+                        state: {
+                            openCreate: true
                         }
                     })
-                }
-                else{
+
+                } else {
                     navigate("/")
                 }
             }
-
-        } catch (error) {
-            setError(error.message)
         }
+
+    } catch (error) {
+
+        setError(error.message)
+        toast.error(error.message)
+
     }
+}
 
     return (
         <div className="flex items-center justify-center gap-6 max-h-screen">

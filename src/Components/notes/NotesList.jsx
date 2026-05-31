@@ -6,7 +6,7 @@ import NotesItem from './NotesItem'
 function NotesList({selectedNotes,setSelectedNotes,handleSelectAll,setShowModal,handleCreateNote}) {
     const search = useSelector((state) => state.ui.searchTerm)
     const sortBy = useSelector((state) => state.ui.sortBy)
-    const notes = useSelector((state) => state.note.notes)
+    const notes = useSelector((state) =>  state.note.notes)
 
     function getNotesList() {
 
@@ -24,6 +24,9 @@ function NotesList({selectedNotes,setSelectedNotes,handleSelectAll,setShowModal,
         })
 
         const sortedNotes = [...filteredNotes].sort((a, b) => {
+            if (a.isPinned !== b.isPinned) {
+                return b.isPinned - a.isPinned
+            }
 
             if (sortBy === 'Latest') {
                 return new Date(b.$createdAt) - new Date(a.$createdAt)

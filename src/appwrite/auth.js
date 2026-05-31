@@ -29,11 +29,11 @@ class AuthService{
 
     async login({email,password}){
         try {
-            const userdata= await this.account.createEmailPasswordSession(email,password)
-            if(!userdata){
+            const userData= await this.account.createEmailPasswordSession(email,password)
+            if(!userData){
                 alert('Please login again!')
             }
-            return userdata
+            return userData
         } catch (error) {
             throw new Error(error);
         }

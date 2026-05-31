@@ -26,9 +26,9 @@ function Search() {
   return (
     <>
     <div className={`flex items-center w-full border border-slate-700 ${theme==='light'? "bg-white": "bg-slate-800"} transition-all duration-200 rounded-2xl p-2`}>
-    <input type="text" placeholder='Search a note..' className={`p-3 outline-none flex-1 placeholder:text-slate-400 bg-transparent ${theme==='light'
-  ? "text-slate-700"
-  : "text-slate-100"} focus:ring-2 focus:ring-blue-300 rounded-xl transition-all duration-200`}
+    <input type="text" placeholder='Search a note..' className={`p-3 outline-none flex-1 bg-transparent ${theme==='light'
+  ? "text-slate-700 placeholder:text-slate-500 "
+  : "text-slate-100 placeholder:text-slate-400 "} focus:ring-2 focus:ring-blue-300 rounded-xl transition-all duration-200`}
     value={search}
     onChange={searchNote}
     />

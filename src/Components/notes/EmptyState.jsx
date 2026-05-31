@@ -2,7 +2,14 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import {Button} from '../index'
 
-function EmptyState({setShowModal,handleCreateNote}) {
+function EmptyState({
+  setShowModal,
+  handleCreateNote,
+  icon,
+  title,
+  message,
+  buttonText,
+  onButtonClick}) {
   const theme= useSelector((state)=> state.ui.theme)
   return (
     <div
@@ -24,7 +31,7 @@ theme==="light"
 >
 
   <div className="text-5xl mb-3">
-    📝
+    {icon}
   </div>
 
   <h2
@@ -35,7 +42,7 @@ theme==="light"
     : "text-slate-100"
   }`}
   >
-    No notes yet
+    {title}
   </h2>
 
   <p
@@ -46,15 +53,17 @@ theme==="light"
     : "text-slate-400"
   }`}
   >
-    Start by creating your first note.
+    {message}
   </p>
 
-  <Button
-    className="mt-5 rounded-xl px-5"
-    onClick={ handleCreateNote}
-  >
-    Create Note
-  </Button>
+  {buttonText && (
+<Button
+className="mt-5 rounded-xl px-5"
+onClick={onButtonClick}
+>
+  {buttonText}
+</Button>
+)}
 
 </div>
   )

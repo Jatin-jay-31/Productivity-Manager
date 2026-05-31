@@ -12,10 +12,10 @@ class DbService{
         this.database= new TablesDB(this.client)
     }
 
-    async createNote({title,content,userId,status="active",isPinned=false,colorIndex = " "}){
+    async createNote({title,content,userId,status="active",isPinned=false,colorIndex = 0}){
         try {
             return await this.database.createRow(conf.databaseId,conf.tableId,ID.unique(),
-                {title,content,userId,status,tags,isPinned,colorIndex}
+                {title,content,userId,status,isPinned,colorIndex}
             )
         } catch (error) {
             throw error
@@ -29,9 +29,6 @@ class DbService{
             }
             if(data.content !==undefined){
                 updateData.content=data.content
-            }
-            if(data.tags !==undefined){
-                updateData.tags=data.tags
             }
             if(data.isPinned !==undefined){
                 updateData.isPinned=data.isPinned

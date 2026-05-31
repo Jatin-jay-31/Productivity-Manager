@@ -9,6 +9,9 @@ import {Textarea} from '../index'
 
 
 function NotesItem({ note,selectedNotes=[],setSelectedNotes }) {
+  const created = new Date(note.$createdAt)
+  const updated = new Date(note.$updatedAt)
+  const isEdited = created.getTime() !== updated.getTime()
 
   const [notetitle, setNotetitle] = useState(note.title)
   const [notecontent, setNotecontent] = useState(note.content)
@@ -43,8 +46,13 @@ hover:shadow-xl border
   ? "border border-slate-300 hover:border-slate-400"
   : "border border-white/30 hover:border-2 border-white/100"} }`}  onClick={()=> navigate(`/note/${note.$id}`)}>
         <div className=' text-right'>
+          {location.pathname==='/' && note.isPinned &&(
+            <button className={`cursor-pointer transition-all duration-200 hover:scale-110
+    active:scale-95 opacity-100`}  
+          >📌</button>
+          )}
         </div>
-        {location.pathname === "/note/trash" && (
+        {(location.pathname === "/note/trash"|| location.pathname === "/note/archive") && (
           <input
 type="checkbox"
 checked={selectedNotes.includes(note.$id)}
@@ -65,7 +73,13 @@ onChange={toggleSelect}
           onChange={(e) => setNotecontent(e.target.value)}
         />
         <div className='flex justify-between items-center '>
-          <p className={`text-sm opacity-70 text-slate-700`}>{note.createdOn}</p>
+          <p className="text-sm opacity-70"> {isEdited ? "Updated" : "Created"}{" "}
+            {new Date( isEdited ? note.$updatedAt : note.$createdAt).toLocaleDateString("en-IN",{
+              day:"numeric",
+              month:"short",
+              year: 'numeric'
+              })}
+            </p>
           <div className='flex gap-2'>
           </div>
 

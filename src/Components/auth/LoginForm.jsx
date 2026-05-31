@@ -5,6 +5,7 @@ import authService from '../../appwrite/auth'
 import { login as authLogin } from '../../store/slices/authSlice'
 import { Link,useNavigate } from 'react-router-dom'
 import {Button,Logo,Input} from '../index'
+import toast from 'react-hot-toast'
 
 function Loginform() {
     const theme= useSelector((state)=> state.ui.theme)
@@ -13,19 +14,48 @@ function Loginform() {
     const{register,handleSubmit}= useForm()
     const [error,setError]= useState("")
 
-    const login=async(data)=> {
-        setError("")
-        try {
-            const session= await authService.login(data)
-            if(session){
-                const userData= await authService.getCurrentUser()
-                if(userData) dispatch(authLogin(userData))
-                    navigate("/")
-            }
-        } catch (error) {
-            setError(error.message)
-        }
+    const login = async (data) => {
+
+  setError("")
+
+  try {
+
+    const session =
+      await authService.login(data)
+
+    if (!session) {
+      toast.error("Login failed")
+      return
     }
+
+    const userData =
+      await authService.getCurrentUser()
+
+    if(userData){
+
+    const safeUser = {
+            $id: userData.$id,
+            name: userData.name,
+            email: userData.email
+        }
+            dispatch(authLogin({
+            userData: safeUser}))
+
+    toast.success(
+        "Welcome back",
+        { duration: 2000 }
+    )
+
+    setTimeout(() => {
+        navigate("/")
+    }, 800)
+}} catch (error) {
+
+    setError(error.message)
+
+    toast.error(error.message)
+  }
+}
   return (
     <div
     className='flex items-center justify-center w-full gap-6 max-h-screen'
