@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { SearchBar, NotesForm, NotesList, Modal, EmptyState } from "../Components/index"
 import { useSelector, useDispatch } from "react-redux"
 import dbservice from "../appwrite/database"
-import { setNotes } from "../store/slices/noteSlice"
+import { setNotes } from "../store/slices/noteSlice.js"
 import { useNavigate, useLocation } from "react-router-dom"
 
 function Home() {

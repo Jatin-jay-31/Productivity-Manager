@@ -3,7 +3,7 @@ import { NotesList, SearchBar, NotesItem, EmptyState, Button, Loader } from '../
 import dbservice from '../appwrite/database'
 import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-import { setNotes, setLoading, setError } from "../store/slices/noteSlice"
+import { setNotes, setLoading, setError } from "../store/slices/noteSlice.js"
 
 function Trash() {
   const dispatch = useDispatch()

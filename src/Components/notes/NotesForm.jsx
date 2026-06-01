@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { lightColors, darkColors } from '../../Constants/NoteColor'
 import { useSelector, useDispatch } from 'react-redux'
-import { addNote, setError } from '../../store/slices/noteSlice'
+import { addNote, setError } from '../../store/slices/noteSlice.js'
 import dbservice from '../../appwrite/database'
 import { Button, Input, Textarea } from '../index'
 import toast from "react-hot-toast"
