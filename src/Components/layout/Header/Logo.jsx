@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import notesIcon from "../../../assets/3d-notes.png"
 
 function Logo() {
   const navigate=useNavigate()
@@ -10,7 +11,7 @@ function Logo() {
         }
   return (
     <div className='w-10 mx-2'>
-      <span> <img src="src/assets/3d-notes.png" alt="img" onClick={()=> navigate(navItem.path)} /> </span>
+      <span> <img src={notesIcon} alt="img" onClick={()=> navigate(navItem.path)} /> </span>
     </div>
   )
 }
