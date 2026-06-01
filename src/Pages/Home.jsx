@@ -76,9 +76,9 @@ function Home() {
     )}
 
     {notes.length > 0 && (
-      <div className="mt-6">
+      <div className="mt-6 flex justify-center md:justify-start w-full">
         <NotesForm setShowModal={setShowModal} />
-      </div>
+        </div>
     )}
 
     {showModal && (
