@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { addNote,updateNote,removeNote,setNotes,clearNotes,setLoading,setError } from '../../store/slices/noteSlice'
-import { setTheme } from '../../store/slices/UiSlice'
+import { setTheme } from '../../store/slices/uiSlice.js'
 import {lightColors,darkColors} from '../../Constants/NoteColor'
 import dbservice from '../../appwrite/database'
 import { useDispatch,useSelector } from 'react-redux'
