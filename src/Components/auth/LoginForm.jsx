@@ -64,7 +64,7 @@ function LoginForm() {
   ${theme==='light'? "bg-white border border-slate-200": "bg-slate-800 border border-slate-700"} `}>
         <div className="mb-2 flex justify-center">
                     <span className="flex justify-center w-full">
-                        <Logo/>
+                        <Logo width="100%" />
                     </span>
         </div>
         <h2 className={`text-center text-2xl font-bold leading-tight ${theme==='light'? "text-black": "text-white "}`}>Sign in to your account</h2>

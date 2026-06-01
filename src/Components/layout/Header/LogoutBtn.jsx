@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom'
 import { clearNotes,setNotes, setLoading, setError } from '../../../store/slices/noteSlice'
 import toast from 'react-hot-toast'
 
-function LogoutBtn() {
+function LogoutBtn({className=""}) {
     const dispatch= useDispatch()
     const navigate=useNavigate()
     const loading = useSelector((state) => state.note.loading)
     const error = useSelector((state) => state.note.error)
+    const theme= useSelector((state)=> state.ui.theme)
     const logoutHandler= async()=>{ 
       try {
         await authService.logout()
@@ -25,11 +26,12 @@ function LogoutBtn() {
         
     }
   return (
-    <div>
-      <button onClick={logoutHandler}
-      className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
-      >Logout</button>
-    </div>
+    <button
+            onClick={logoutHandler}
+            className={`${className} inline-block duration-200 ${theme==='light'? " hover:bg-blue-100": "hover:bg-slate-700"}`}
+        >
+            Logout
+        </button>
   )
 }
 

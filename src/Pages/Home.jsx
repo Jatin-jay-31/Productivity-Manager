@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { SearchBar, NotesForm, NotesList, Modal, EmptyState } from "../Components/index"
+import { SearchBar, NotesForm, NotesList, Modal, EmptyState,Container } from "../Components/index"
 import { useSelector, useDispatch } from "react-redux"
 import dbservice from "../appwrite/database"
 import { setNotes } from "../store/slices/noteSlice.js"
@@ -67,7 +67,7 @@ function Home() {
     )}
 
     {notes.length > 0 && (
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap justify-center md:justify-start gap-2 w-full mx-auto px-2 sm:px-0">
         <NotesList
           setShowModal={setShowModal}
           handleCreateNote={handleCreateNote}
