@@ -3,7 +3,7 @@ import { NotesList, SearchBar, NotesItem, EmptyState,Loader } from '../Component
 import dbservice from '../appwrite/database'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '../Components/index'
-import { setNotes,setLoading,setError }from "../store/slices/noteSlice"
+import { setNotes,setLoading,setError }from "../store/slices/noteSlice.js"
 import toast from 'react-hot-toast'
 
 function Archive() {
