@@ -7,7 +7,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import {Button,Logo,Input} from '../index'
 import toast from 'react-hot-toast'
 
-function Loginform() {
+function LoginForm() {
     const theme= useSelector((state)=> state.ui.theme)
     const navigate= useNavigate()
     const dispatch=useDispatch()
@@ -111,4 +111,4 @@ function Loginform() {
   )
 }
 
-export default Loginform
+export default LoginForm

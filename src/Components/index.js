@@ -1,5 +1,5 @@
-import Loginform from "./auth/Loginform";
-import SignUpForm from "./auth/Signupform";
+import LoginForm from "./auth/LoginForm";
+import SignUpForm from './auth/SignUpForm';
 import AuthLayout from './layout/AuthLayout'
 import Header from "./layout/Header/Header";
 import Logo from "./layout/Header/Logo"
@@ -17,4 +17,4 @@ import Textarea from "./ui/Textarea"
 import Container from "./layout/Container";
 import Modal from "./ui/Modal"
 
-export {Container,Modal,Loginform,SignUpForm,AuthLayout,Header,Logo,LogoutBtn,ThemeToggle,EmptyState,NotesForm,NotesItem,NotesList,SearchBar,Button,Input,Textarea,Loader}
+export {Container,Modal,LoginForm,SignUpForm,AuthLayout,Header,Logo,LogoutBtn,ThemeToggle,EmptyState,NotesForm,NotesItem,NotesList,SearchBar,Button,Input,Textarea,Loader}
