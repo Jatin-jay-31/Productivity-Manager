@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { setSearchTerm,setSortBy,setCurrentView } from '../../store/slices/UiSlice'
+import { setSearchTerm,setSortBy,setCurrentView } from '../../store/slices/uiSlice.js'
 import Button from '../ui/Button'
 import dbservice from '../../appwrite/database'
 import { setNotes } from '../../store/slices/noteSlice'
