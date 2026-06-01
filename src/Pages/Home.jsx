@@ -17,7 +17,6 @@ function Home() {
 
   const [showModal, setShowModal] = useState(false)
 
-  // 🧠 Create note handler
   const handleCreateNote = () => {
     if (authStatus) {
       setShowModal(true)
@@ -30,17 +29,14 @@ function Home() {
     }
   }
 
-  // 🔥 Open modal after signup redirect
   useEffect(() => {
     if (location.state?.openCreate) {
       setShowModal(true)
 
-      // optional cleanup (prevents re-trigger on refresh)
       window.history.replaceState({}, document.title)
     }
   }, [location.state])
 
-  // 📦 Fetch notes
   useEffect(() => {
     if (!userId) return
 
@@ -56,12 +52,10 @@ function Home() {
     }`}
   >
 
-    {/* SEARCH */}
     <div className="w-full px-4 my-2">
       <SearchBar />
     </div>
 
-    {/* EMPTY STATE */}
     {notes.length === 0 && (
       <EmptyState
         icon="📝"
@@ -72,7 +66,6 @@ function Home() {
       />
     )}
 
-    {/* 🔥 GRID SECTION (UNCHANGED) */}
     {notes.length > 0 && (
       <div className="flex flex-wrap gap-2">
         <NotesList
@@ -82,14 +75,12 @@ function Home() {
       </div>
     )}
 
-    {/* 🔥 NOTE FORM ALWAYS BELOW GRID */}
     {notes.length > 0 && (
       <div className="mt-6">
         <NotesForm setShowModal={setShowModal} />
       </div>
     )}
 
-    {/* MODAL ONLY FOR SIGNUP FLOW */}
     {showModal && (
       <Modal onClose={() => setShowModal(false)}>
         <NotesForm setShowModal={setShowModal} />
