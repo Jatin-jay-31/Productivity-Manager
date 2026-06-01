@@ -3,7 +3,7 @@ import { LoginForm } from '../Components'
 function Login() {
   return (
     <div className='py-8'>
-      <Loginform/>
+      <LoginForm/>
     </div>
   )
 }
